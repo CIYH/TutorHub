@@ -28,7 +28,7 @@ public class SubjectController {
     public String list(Model model) {
         model.addAttribute("subject", subjectService.findAll());
         model.addAttribute("body", "/WEB-INF/views/Admin/subjects.jsp");
-        return "/layout/admin/main";
+        return "/layout/Admin/main";
     }
 
     @GetMapping("/add")
