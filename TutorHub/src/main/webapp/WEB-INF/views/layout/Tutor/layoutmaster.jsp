@@ -126,36 +126,48 @@
         <!-- Navbar End -->
 
 
-        <!-- Content -->
-        <div class="container">
-            <div class="calendar-title">Lịch công việc tháng 6/2025</div>
-            <div class="calendar">
-                <%-- Lặp tạo 30 ngày demo --%>
-                <% for (int i = 1; i <= 30; i++) {%>
-                <div class="calendar-day" onclick="openModal(<%=i%>)">
-                    <strong><%= i%></strong>
-                    <div style="font-size: 12px; color: gray;">Công việc</div>
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Dashboard Gia Sư</h2>
+            <div class="row text-white">
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-primary">
+                        <div class="card-body">
+                            <h5 class="card-title">Tổng số học sinh</h5>
+                            <p class="card-text fs-4">24</p>
+                        </div>
+                    </div>
                 </div>
-                <% }%>
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-success">
+                        <div class="card-body">
+                            <h5 class="card-title">Số buổi trong tuần</h5>
+                            <p class="card-text fs-4">12</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-warning">
+                        <div class="card-body">
+                            <h5 class="card-title">Lịch dạy hôm nay</h5>
+                            <p class="card-text fs-6">Math - 14h, English - 16h</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-info">
+                        <div class="card-body">
+                            <h5 class="card-title">Mục tiêu tháng</h5>
+                            <p class="card-text fs-6">60 buổi / đã hoàn thành: 35</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <!-- Modal chi tiết -->
-        <div class="modal fade" id="jobDetailModal" tabindex="-1" role="dialog" aria-labelledby="jobDetailModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Chi tiết công việc ngày <span id="modalDate"></span></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span>&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p><strong>Tên công việc:</strong> Họp dự án tháng</p>
-                        <p><strong>Thời gian:</strong> 9:00 - 10:30</p>
-                        <p><strong>Người phụ trách:</strong> Nguyễn Văn A</p>
-                        <p><strong>Ghi chú:</strong> Chuẩn bị báo cáo tiến độ</p>
-                    </div>
+            <!-- Chart -->
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">Biểu đồ số buổi học theo tuần</h5>
+                    <canvas id="lessonChart" height="100"></canvas>
                 </div>
             </div>
         </div>
@@ -249,11 +261,34 @@
 
         <!-- Template Javascript -->
         <script src="${pageContext.request.contextPath}/src/js/main.js"></script>
+        <!-- Chart.js script -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
-                    function openModal(day) {
-                        document.getElementById("modalDate").textContent = day + "/06/2025";
-                        $('#jobDetailModal').modal('show');
+            const ctx = document.getElementById('lessonChart').getContext('2d');
+            const lessonChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Tuần 1', 'Tuần 2', 'Tuần 3', 'Tuần 4'],
+                    datasets: [{
+                            label: 'Số buổi học',
+                            data: [12, 14, 10, 9],
+                            backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1,
+                        }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Số buổi'
+                            }
+                        }
                     }
+                }
+            });
         </script>
     </body>
 

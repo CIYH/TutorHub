@@ -87,7 +87,7 @@
                             <a href="#" class="nav-link dropdown-toggle text-white" data-toggle="dropdown">Lịch dạy</a>
                             <div class="dropdown-menu m-0">
                                 <a href="${pageContext.request.contextPath}/about" class="dropdown-item">Xem lịch dạy</a>
-                                <a href="feature.html" class="dropdown-item">Quản lý lịch dạy</a>
+                                <a href="${pageContext.request.contextPath}/SuaLichDay" class="dropdown-item">Quản lý lịch dạy</a>
                             </div>
                         </div>
                     </div>
