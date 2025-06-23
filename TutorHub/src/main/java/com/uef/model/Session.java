@@ -4,84 +4,131 @@
  */
 package com.uef.model;
 
-import jakarta.validation.constraints.Null;
-import jakarta.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.validation.constraints.*;
+import java.io.Serializable;
 
 /**
  *
  * @author qnhat
  */
-public class Session {
+public class Session implements Serializable {
+
+    private int sessionId;
     
-    private Subject subject;
+    @Min(value = 0, message = "Phí không được âm")
+    private int fee;
     
-    private Tutor tutor;
+    private int subId; // Khóa ngoại tới Subject
+    private String seDescription;
+    private String title;
+    private String duration;
+    private String tutorId; // Khóa ngoại tới Tutor, có thể null
     
-    private List<BookingSessionDetail> list;
+    @Pattern(regexp = "Lock|Unlock", message = "Trạng thái phải là Lock hoặc Unlock")
+    private String seStatus;
     
-    @Null(message = "Không được để trống")
-    private int SessionId;
-    
-    @Size(min = 1, max = 100, message = "Độ dài trong khoảng 1 - 100 ký tự")
-    private String Description;
-    
-    @Null(message = "Không được để trống")
-    private int Capacity;
-    
-    public enum status{
-        Lock,
-        Unlock
+    @Pattern(regexp = "On|Off", message = "Trạng thái kích hoạt phải là On hoặc Off")
+    private String active;
+
+    public Session() {
     }
 
-    public Subject getSubject() {
-        return subject;
-    }
-
-    public void setSubject(Subject subject) {
-        this.subject = subject;
-    }
-
-    public Tutor getTutor() {
-        return tutor;
-    }
-
-    public void setTutor(Tutor tutor) {
-        this.tutor = tutor;
-    }
-
-    public List<BookingSessionDetail> getList() {
-        return list;
-    }
-
-    public void setList(List<BookingSessionDetail> list) {
-        this.list = list;
+    public Session(int sessionId, int fee, int subId, String seDescription, String title, String duration, String tutorId, String seStatus, String active) {
+        this.sessionId = sessionId;
+        this.fee = fee;
+        this.subId = subId;
+        this.seDescription = seDescription;
+        this.title = title;
+        this.duration = duration;
+        this.tutorId = tutorId;
+        this.seStatus = seStatus;
+        this.active = active;
     }
 
     public int getSessionId() {
-        return SessionId;
+        return sessionId;
     }
 
-    public void setSessionId(int SessionId) {
-        this.SessionId = SessionId;
+    public void setSessionId(int sessionId) {
+        this.sessionId = sessionId;
     }
 
-    public String getDescription() {
-        return Description;
+    public int getFee() {
+        return fee;
     }
 
-    public void setDescription(String Description) {
-        this.Description = Description;
+    public void setFee(int fee) {
+        this.fee = fee;
     }
 
-    public int getCapacity() {
-        return Capacity;
+    public int getSubId() {
+        return subId;
     }
 
-    public void setCapacity(int Capacity) {
-        this.Capacity = Capacity;
+    public void setSubId(int subId) {
+        this.subId = subId;
     }
-    
-    
+
+    public String getSeDescription() {
+        return seDescription;
+    }
+
+    public void setSeDescription(String seDescription) {
+        this.seDescription = seDescription;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getTutorId() {
+        return tutorId;
+    }
+
+    public void setTutorId(String tutorId) {
+        this.tutorId = tutorId;
+    }
+
+    public String getSeStatus() {
+        return seStatus;
+    }
+
+    public void setSeStatus(String seStatus) {
+        this.seStatus = seStatus;
+    }
+
+    public String getActive() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
+    }
+
+    @Override
+    public String toString() {
+        return "Session{"
+                + "sessionId=" + sessionId
+                + ", fee=" + fee
+                + ", subId=" + subId
+                + ", seDescription='" + seDescription + '\''
+                + ", title='" + title + '\''
+                + ", duration='" + duration + '\''
+                + ", tutorId='" + tutorId + '\''
+                + ", seStatus='" + seStatus + '\''
+                + ", active='" + active + '\''
+                + '}';
+    }
 }

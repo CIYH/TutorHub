@@ -8,17 +8,32 @@ package com.uef.model;
  *
  * @author qnhat
  */
+import java.io.Serializable;
 
-import java.util.*;
+public class Admin extends People implements Serializable {
 
-public class Admin extends People {
-    private List<Subject> list;
-
-    public List<Subject> getList() {
-        return list;
+    
+    public Admin() {
+        super();
+        this.setpRole("admin"); 
     }
 
-    public void setList(List<Subject> list) {
-        this.list = list;
+    public Admin(String id, String pName, String email, String address, String gender, String phonenumber, String active, String password) {
+        super(id, pName, email, address, "admin", gender, phonenumber, active, password);
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{"
+                + "id='" + getId() + '\''
+                + ", pName='" + getpName() + '\''
+                + ", email='" + getEmail() + '\''
+                + ", address='" + getAddress() + '\''
+                + ", pRole='" + getpRole() + '\''
+                + ", gender='" + getGender() + '\''
+                + ", phonenumber='" + getPhonenumber() + '\''
+                + ", active='" + getActive() + '\''
+                + ", password='" + getPassword() + '\''
+                + '}';
     }
 }

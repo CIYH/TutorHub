@@ -4,25 +4,39 @@
  */
 package com.uef.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
 /**
  *
  * @author qnhat
  */
+public class Student extends People implements Serializable {
 
-public class Student extends People {
-    
-    private List<BookingSession> list;
-
-    public List<BookingSession> getList() {
-        return list;
+    public Student() {
+        super();
+        this.setpRole("user"); 
     }
 
-    public void setList(List<BookingSession> list) {
-        this.list = list;
+    public Student(String id, String pName, String email, String address, String gender, String phonenumber, String active, String password) {
+        super(id, pName, email, address, "user", gender, phonenumber, active, password);
     }
     
     
+    
+
+    @Override
+    public String toString() {
+        return "Student{"
+                + "id='" + getId() + '\''
+                + ", pName='" + getpName() + '\''
+                + ", email='" + getEmail() + '\''
+                + ", address='" + getAddress() + '\''
+                + ", pRole='" + getpRole() + '\''
+                + ", gender='" + getGender() + '\''
+                + ", phonenumber='" + getPhonenumber() + '\''
+                + ", active='" + getActive() + '\''
+                + ", password='" + getPassword() + '\''
+                + '}';
+    }
+
 }

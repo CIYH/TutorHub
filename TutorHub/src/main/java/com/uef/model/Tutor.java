@@ -4,70 +4,105 @@
  */
 package com.uef.model;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-import java.util.List;
-
 /**
  *
  * @author qnhat
  */
-public class Tutor extends People {
+import jakarta.validation.constraints.*;
+import java.io.Serializable;
+
+public class Tutor extends People implements Serializable {
+
+    @NotBlank(message = "Không được trống")
+     @Min(value = 0, message = "Phí không được âm")
+    private int fee;
     
-    @NotBlank(message = "Không được để trống")
-    private int Fee;
+    @Pattern(regexp = "^(1|2|3|4|5)$", message = "Rating phải là 1, 2, 3, 4 hoặc 5")
+    private String rating;
     
-    private Subject Subject;
     
-    @NotBlank(message = "Không được để trống")
-    @Size(min = 1, max = 100)
-    private String Education;
+    private Integer subId;
     
-    @NotBlank(message = "Không được để trống")
-    @Size(min = 1, max = 100)
-    private String Experience;
+    @NotBlank(message = "Không được trống")
+    @Size(max = 100, message = "Độ dài không quá 100 ký tự" )
+    private String education;
     
-    private List<Session> Session;
-    
-    public enum Rating{
-        One,
-        Two,
-        Three,
-        Four,
-        Five
+    @NotBlank(message = "Không được trống")
+    @Size(max = 100, message = "Độ dài không quá 100 ký tự" )
+    private String experience;
+
+    public Tutor() {
+        super();
+        this.setpRole("tutor");
+    }
+
+    public Tutor(String id, String pName, String email, String address, String gender, String phonenumber, String active, String password, int fee, String rating, Integer subId, String education, String experience) {
+        super(id, pName, email, address, "tutor", gender, phonenumber, active, password);
+        this.fee = fee;
+        this.rating = rating;
+        this.subId = subId;
+        this.education = education;
+        this.experience = experience;
     }
 
     public int getFee() {
-        return Fee;
+        return fee;
     }
 
-    public Subject getSubject() {
-        return Subject;
+    public void setFee(int fee) {
+        this.fee = fee;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public Integer getSubId() {
+        return subId;
+    }
+
+    public void setSubId(Integer subId) {
+        this.subId = subId;
     }
 
     public String getEducation() {
-        return Education;
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
     }
 
     public String getExperience() {
-        return Experience;
+        return experience;
     }
 
-    public void setFee(int Fee) {
-        this.Fee = Fee;
+    public void setExperience(String experience) {
+        this.experience = experience;
     }
 
-    public void setSubId(Subject Subject) {
-        this.Subject = Subject;
+    @Override
+    public String toString() {
+        return "Tutor{"
+                + "id='" + getId() + '\''
+                + ", pName='" + getpName() + '\''
+                + ", email='" + getEmail() + '\''
+                + ", address='" + getAddress() + '\''
+                + ", pRole='" + getpRole() + '\''
+                + ", gender='" + getGender() + '\''
+                + ", phonenumber='" + getPhonenumber() + '\''
+                + ", active='" + getActive() + '\''
+                + ", password='" + getPassword() + '\''
+                + ", fee=" + fee
+                + ", rating='" + rating + '\''
+                + ", subId=" + subId
+                + ", education='" + education + '\''
+                + ", experience='" + experience + '\''
+                + '}';
     }
 
-    public void setEducation(String Education) {
-        this.Education = Education;
-    }
-
-    public void setExperience(String Experience) {
-        this.Experience = Experience;
-    }
-    
-    
 }

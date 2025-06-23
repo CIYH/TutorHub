@@ -4,79 +4,91 @@
  */
 package com.uef.model;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-import java.time.*;
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.validation.constraints.*;
+import java.io.Serializable;
 
 /**
  *
  * @author qnhat
  */
-public class BookingSession {
-    
-    @NotBlank(message = "Không được để trống")
-    private int BookingId;
-    
-    private Student student;
-    
-    private Subject subject;
-    
-    private Tutor tutor;
-    
-    
-    @Size(min = 1, max = 50)
-    private String StudyDate;
-    
-    private List<BookingSessionDetail> list ;
+public class BookingSession implements Serializable {
 
-    public List<BookingSessionDetail> getList() {
-        return list;
+    
+    
+    private int bookingId;
+
+    @NotBlank(message = "Không được trống")
+    private String studentId; // Có thể null nên không cần annotation @NotBlank
+
+    @NotNull(message = "SessionId không được để trống")
+    private Integer sessionId; // Dùng Integer nếu bạn muốn kiểm tra null
+
+    @Pattern(regexp = "Accept|Decline", message = "Trạng thái chỉ được là 'Accept' hoặc 'Decline'")
+    private String bsStatus;
+
+    @Pattern(regexp = "On|Off", message = "Trạng thái kích hoạt chỉ được là 'On' hoặc 'Off'")
+    private String active;
+
+    public BookingSession() {
     }
 
-    public void setList(List<BookingSessionDetail> list) {
-        this.list = list;
+    public BookingSession(int bookingId, String studentId, int sessionId, String bsStatus, String active) {
+        this.bookingId = bookingId;
+        this.studentId = studentId;
+        this.sessionId = sessionId;
+        this.bsStatus = bsStatus;
+        this.active = active;
     }
 
     public int getBookingId() {
-        return BookingId;
+        return bookingId;
     }
 
-    public void setBookingId(int BookingId) {
-        this.BookingId = BookingId;
+    public void setBookingId(int bookingId) {
+        this.bookingId = bookingId;
     }
 
-    public Student getStudent() {
-        return student;
+    public String getStudentId() {
+        return studentId;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 
-    public Subject getSubject() {
-        return subject;
+    public int getSessionId() {
+        return sessionId;
     }
 
-    public void setSubject(Subject subject) {
-        this.subject = subject;
+    public void setSessionId(int sessionId) {
+        this.sessionId = sessionId;
     }
 
-    public Tutor getTutor() {
-        return tutor;
+    public String getBsStatus() {
+        return bsStatus;
     }
 
-    public void setTutor(Tutor tutor) {
-        this.tutor = tutor;
+    public void setBsStatus(String bsStatus) {
+        this.bsStatus = bsStatus;
     }
 
-    public String getStudyDate() {
-        return StudyDate;
+    public String getActive() {
+        return active;
     }
 
-    public void setStudyDate(String StudyDate) {
-        this.StudyDate = StudyDate;
+    public void setActive(String active) {
+        this.active = active;
     }
-    
+
+    @Override
+    public String toString() {
+        return "BookingSession{"
+                + "bookingId=" + bookingId
+                + ", studentId='" + studentId + '\''
+                + ", sessionId=" + sessionId
+                + ", bsStatus='" + bsStatus + '\''
+                + ", active='" + active + '\''
+                + '}';
+    }
+
 }

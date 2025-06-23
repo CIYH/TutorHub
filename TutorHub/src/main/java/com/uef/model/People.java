@@ -4,102 +4,147 @@
  */
 package com.uef.model;
 
+import jakarta.validation.constraints.*;
+import java.io.Serializable;
+
 /**
  *
  * @author qnhat
  */
-import jakarta.validation.constraints.*;
+public class People implements Serializable {
 
-public abstract class People {
-
-    @NotBlank(message = "Không được để trống")
-    @Size(min = 1, max = 50)
-    private String Id;
+    @NotBlank(message = "Không được trống")
+    @Size(max = 50, message = "Id không quá 50 ký tự" )
+    protected String id; // Sử dụng protected để các lớp con có thể truy cập
     
-    @NotBlank(message = "Không được để trống")
-    @Size(min = 1, max = 100)
-    private String Name;
+    @NotBlank(message = "Không được trống")
+    @Size(max = 100, message = "Tên không quá 100 ký tự" )
+    protected String pName;
     
     @Email(message = "Sai định dạng email")
-    @Size(min = 1, max = 150)
-    @Pattern(regexp = "@gmail.com", message = "Sai định dạng email, định dạng đúng: @gmail.com")
-    private String Email;
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@gmail\\.com$", message = "Email phải đúng định dạng và kết thúc bằng @gmail.com")
+    protected String email;
     
-    @Size(min = 1, max = 150)
-    private String Address;
+    @Size(max = 150, message = "Địa chỉ không quá 150 ký tự" )
+    protected String address;
     
-    @Size(min = 1, max = 20)
-    private String Phonenumber;
+    @NotBlank(message = "Không được trống")
+    @Pattern(regexp = "^(user|admin|tutor)$", message = "Vai trò phải là 'user', 'admin' hoặc 'tutor'")
+    protected String pRole;
     
-    @Size(min = 1, max = 200)
-    @Pattern(regexp = "^(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!]).+$", message = "Mật khẩu phải chứa ít nhất 1 chữ in hoa, 1 số và 1 ký tự đặc biệt")
-    private String Password;
+    @Pattern(regexp = "^(Nam|Nữ)$", message = "Giới tính phải là 'Nam' hoặc 'Nữ'")
+    protected String gender;
+    
+    @Size(max = 20, message = "SĐT không quá 20 ký tự" )
+    protected String phonenumber;
+    
+    @Pattern(regexp = "^(On|Off)$", message = "Active must be On|Off")
+    protected String active;
+    
+    @NotBlank(message = "Không được trống")
+    @Size(max = 200, message = "Id không quá 200 ký tự" )
+    protected String password;
 
-    private Role role;
-    private Gender gender;
-
-    public Role getRole() {
-        return role;
+    public People() {
     }
 
-    public void setRole(Role role) {
-        this.role = (role != null)? role : Role.getDefault();
+    public People(String id, String pName, String email, String address, String pRole, String gender, String phonenumber, String active, String password) {
+        this.id = id;
+        this.pName = pName;
+        this.email = email;
+        this.address = address;
+        this.pRole = pRole;
+        this.gender = gender;
+        this.phonenumber = phonenumber;
+        this.active = "On";
+        this.password = password;
     }
 
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = (gender != null)? gender : Gender.getDefault();
-    }   
-    
     public String getId() {
-        return Id;
+        return id;
     }
 
-    public void setId(String Id) {
-        this.Id = Id;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getName() {
-        return Name;
+    public String getpName() {
+        return pName;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setpName(String pName) {
+        this.pName = pName;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
-    public void setAddress(String Address) {
-        this.Address = Address;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getpRole() {
+        return pRole;
+    }
+
+    public void setpRole(String pRole) {
+        this.pRole = pRole;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getPhonenumber() {
-        return Phonenumber;
+        return phonenumber;
     }
 
-    public void setPhonenumber(String Phonenumber) {
-        this.Phonenumber = Phonenumber;
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    public String getActive() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
-    public void setPassword(String Password) {
-        this.Password = Password;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "People{"
+                + "id='" + id + '\''
+                + ", pName='" + pName + '\''
+                + ", email='" + email + '\''
+                + ", address='" + address + '\''
+                + ", pRole='" + pRole + '\''
+                + ", gender='" + gender + '\''
+                + ", phonenumber='" + phonenumber + '\''
+                + ", active='" + active + '\''
+                + ", password='" + password + '\''
+                + '}';
     }
 
 }

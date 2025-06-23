@@ -8,85 +8,92 @@ package com.uef.model;
  *
  * @author qnhat
  */
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import java.io.Serializable;
 
-public class Subject {
+public class Subject implements Serializable {
     
-    @NotNull(message = "Không được để trống")
-    private int SubId;
+    @NotBlank(message = "Không được trống")
+    private int subId;
     
-    private Admin admin = new Admin();
+    @NotBlank(message = "Không được trống")
+    @Size(max = 50, message = "Độ dài không quá 50 ký tự" )
+    private String adminId;
     
-    @NotBlank(message = "Không được để trống")
-    @Size(min = 1, max = 100)
-    private String Su_Name;
+    @NotBlank(message = "Không được trống")
+    @Size(max = 100, message = "Độ dài không quá 100 ký tự" )
+    private String suName;
     
-    @Size(min = 1, max = 200)
-    private String Su_Description;
+    @NotBlank(message = "Không được trống")
+    @Size(max = 200, message = "Độ dài không quá 200 ký tự" )
+    private String suDescription;
     
-    private Use use;
-    
-    public Admin getAdmin() {
-        return admin;
+    @NotBlank(message = "Không được trống")
+    @Size(max = 200, message = "Độ dài không quá 200 ký tự" )
+    @Pattern(regexp = "^(On|Off)$", message = "Active must be On|Off")
+    private String active;
+
+    public Subject() {
     }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
+    public Subject(int subId, String adminId, String suName, String suDescription, String active) {
+        this.subId = subId;
+        this.adminId = adminId;
+        this.suName = suName;
+        this.suDescription = suDescription;
+        this.active = active;
     }
 
     public int getSubId() {
-        return SubId;
+        return subId;
     }
 
-    public void setSubId(int SubId) {
-        this.SubId = SubId;
+    public void setSubId(int subId) {
+        this.subId = subId;
     }
 
-    public String getSu_Name() {
-        return Su_Name;
+    public String getAdminId() {
+        return adminId;
     }
 
-    public void setSu_Name(String Su_Name) {
-        this.Su_Name = Su_Name;
+    public void setAdminId(String adminId) {
+        this.adminId = adminId;
     }
 
-    public String getSu_Description() {
-        return Su_Description;
+    public String getSuName() {
+        return suName;
     }
 
-    public void setSu_Description(String Su_Description) {
-        this.Su_Description = Su_Description;
+    public void setSuName(String suName) {
+        this.suName = suName;
+    }
+
+    public String getSuDescription() {
+        return suDescription;
+    }
+
+    public void setSuDescription(String suDescription) {
+        this.suDescription = suDescription;
+    }
+
+    public String getActive() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
     }
     
-    //Constructor
-
-    public Subject() {
-        this.use = Use.Yes;
+    @Override
+    public String toString() {
+        return "Subject{" +
+               "subId=" + subId +
+               ", adminId='" + adminId + '\'' +
+               ", suName='" + suName + '\'' +
+               ", suDescription='" + suDescription + '\'' +
+               ", active='" + active + '\'' +
+               '}';
     }
-
-    public Subject(int SubId, String Su_Name, String Su_Description) {
-        this.SubId = SubId;
-        this.Su_Name = Su_Name;
-        this.Su_Description = Su_Description;
-        this.use = Use.Yes;
-    }
-    
-    
-    
-    //Method
-
-    public Use getUse() {
-        return use;
-    }
-
-    public void setUse(Use use) {
-        this.use = use;
-    }
-
-    public int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    
-    
 }
