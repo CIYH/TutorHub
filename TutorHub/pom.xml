@@ -14,54 +14,56 @@
     
     <dependencies>
         <dependency>
-            <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>${jakartaee}</version>
-            <scope>provided</scope>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.0.33</version> <!-- Bạn có thể thay bằng phiên bản 8.x mới nhất -->
+            <scope>runtime</scope>
         </dependency>
+        
+        <dependency> 
+            <groupId>jakarta.platform</groupId> 
+            <artifactId>jakarta.jakartaee-api</artifactId> 
+            <version>10.0.0</version> 
+            <scope>provided</scope> 
+        </dependency> 
+        <!-- Spring Web MVC --> 
         <dependency> 
             <groupId>org.springframework</groupId> 
             <artifactId>spring-webmvc</artifactId> 
             <version>6.0.11</version> 
         </dependency> 
-        <!-- JSTL --> 
+        <dependency> 
+            <groupId>org.hibernate.validator</groupId> 
+            <artifactId>hibernate-validator</artifactId> 
+            <version>8.0.0.Final</version> 
+        </dependency>
         <dependency> 
             <groupId>javax.servlet</groupId> 
-            <artifactId>jstl</artifactId> 
-            <version>1.2</version> 
-        </dependency>
-        
-        <!-- Jakarta Servlet API (Tomcat 10) --> 
-        <dependency> 
-            <groupId>jakarta.servlet</groupId> 
-            <artifactId>jakarta.servlet-api</artifactId> 
-            <version>6.0.0</version> 
+            <artifactId>javax.servlet-api</artifactId> 
+            <version>4.0.1</version> 
             <scope>provided</scope> 
         </dependency> 
- 
-        <!-- Jakarta Validation API --> 
-        <dependency> 
-            <groupId>jakarta.validation</groupId> 
-            <artifactId>jakarta.validation-api</artifactId> 
-            <version>3.0.2</version> 
-        </dependency> 
- 
-        <!-- JSTL cho Jakarta --> 
         <dependency> 
             <groupId>jakarta.servlet.jsp.jstl</groupId> 
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId> 
+            <version>3.0.1</version> 
+        </dependency> 
+        <dependency> 
+            <groupId>org.glassfish.web</groupId> 
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId> 
             <version>3.0.0</version> 
         </dependency> 
-        <dependency>
-            <groupId>org.glassfish.web</groupId>
-            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-            <version>3.0.1</version>
-        </dependency>
-         
-        <dependency>
-            <groupId>jakarta.annotation</groupId>
-            <artifactId>jakarta.annotation-api</artifactId>
-            <version>2.1.1</version> <!-- Check for the latest version -->
+        <!-- JDBC driver for SQL Server --> 
+        <dependency> 
+            <groupId>com.microsoft.sqlserver</groupId> 
+            <artifactId>mssql-jdbc</artifactId> 
+            <version>12.2.0.jre11</version> <!-- Hoặc jre8 tuỳ vào JDK --> 
+        </dependency> 
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc --> 
+        <dependency> 
+            <groupId>org.springframework</groupId> 
+            <artifactId>spring-jdbc</artifactId> 
+            <version>6.2.5</version> 
         </dependency>
     </dependencies>
     
